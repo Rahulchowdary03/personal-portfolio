@@ -172,6 +172,29 @@ body {
   width: 30%;
   text-align: center;
 }
+.education ul li {
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.education ul li::before {
+  content: "";
+  position: absolute;
+  background: var(--secondary-color);
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transform-origin: bottom;
+  transform: scaleY(0.03);
+  transition: all 0.3s;
+}
+
+.education ul li:hover::before {
+  transform: scaleY(1);
+}
 
 /* ---------- skills section ---------- */
 .skills {
