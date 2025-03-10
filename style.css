@@ -73,9 +73,18 @@ body {
   max-width: 400px; 
   border-radius: 50%;
   margin: 0 30px;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.479);
+  box-shadow: 0 0 20px #4ecdc4, 0 0 40px #349090;
+  animation: glow-border 1.5s infinite alternate;
 }
-
+@keyframes glow-border {
+  0%{
+    box-shadow: 0 0 10px #4ecdc4, 0 0 20px #349090;
+  }
+  100%{
+    box-shadow: 0 0 30px #a3e6de, 0 0 60px #4ecdc4;
+  }
+  
+}
 #main .user_info .btn {
   padding: 0.6em 2em;
   background: none;
