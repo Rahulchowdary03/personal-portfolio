@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Work+Sans&display=swap');
 
+
 * {
   margin: 0;
   padding: 0;
@@ -24,6 +25,7 @@ body {
   background: var(--bg);
   color: var(--color);
 }
+
 
 .center {
   display: flex;
@@ -142,14 +144,24 @@ body {
 }
 
 /* ---------- education section ---------- */
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: #0f0c29;
+  color: white;
+  overflow-x: hidden;
+}
+
 .education {
   width: 100%;
   background: #1d1d1d;
-  padding: 10px;
+  padding: 100px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .education_heading {
@@ -159,6 +171,21 @@ body {
   color: var(--primary-color);
   text-align: center;
   width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+}
+
+.education_heading::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
 }
 
 .education ul {
@@ -168,6 +195,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
+  max-width: 1200px;
 }
 
 .education ul li {
@@ -176,15 +204,17 @@ body {
   opacity: 0.8;
   margin: 1.5em;
   background: rgba(255, 255, 255, 0.1);
-  padding: 1em;
+  padding: 2em;
   border-radius: 8px;
   width: 30%;
+  min-width: 300px;
   text-align: center;
-}
-.education ul li {
   position: relative;
   cursor: pointer;
   z-index: 1;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .education ul li::before {
@@ -199,12 +229,179 @@ body {
   transform-origin: bottom;
   transform: scaleY(0.03);
   transition: all 0.3s;
+  border-radius: 8px;
+}
+
+.education ul li:hover {
+  opacity: 1;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
 .education ul li:hover::before {
   transform: scaleY(1);
 }
+.education-section {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  color: #333;
+}
 
+.section-heading {
+  color: #2c3e50;
+  font-size: xx-large;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  font-size: 2.2em;
+  position: relative;
+}
+
+
+.education-list {
+  list-style: none;
+  padding: 0;
+}
+
+.education-item {
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.degree-btn {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  text-align: left;
+  width: 100%;
+  font-size: 1.1em;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button Before Hover State */
+.degree-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255,255,255,0.2), 
+                transparent);
+  transition: all 0.6s ease;
+}
+
+/* Button Hover Effects */
+.degree-btn:hover {
+  background: linear-gradient(135deg, #2980b9, #3498db);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transform: translateY(-2px);
+}
+
+.degree-btn:hover::before {
+  left: 100%;
+}
+
+/* Button After Hover State */
+.degree-btn::after {
+  content: '▼';
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+}
+
+.degree-btn.active::after {
+  content: '▲';
+  transform: rotate(180deg);
+}
+
+.education-details {
+  display: none;
+  padding: 20px;
+  background: #f8f9fa;
+  border-left: 4px solid #3498db;
+  margin-top: -5px;
+  border-radius: 0 0 6px 6px;
+  animation: fadeIn 0.4s ease-out;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.education-details p {
+  margin: 10px 0;
+  color: #333;
+  line-height: 1.5;
+}
+
+.institution {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 1.1em;
+}
+
+.duration {
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.additional-info {
+  color: #95a5a6;
+  font-size: 0.95em;
+  padding-left: 15px;
+  border-left: 2px solid #bdc3c7;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Toggle details styling */
+.education-details {
+  display: none;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  margin-top: 15px;
+  animation: fadeIn 0.5s ease-out;
+  color: black;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.education-details p {
+  margin: 10px 0;
+  color: #e2e2e2;
+}
+
+.institution {
+  font-weight: bold;
+  color: black;
+}
+
+.duration {
+  font-style: italic;
+  color: darkblue;
+}
+
+.additional-info {
+  color: #a1a1a1;
+  font-size: 0.9em;
+}
 /* ---------- skills section ---------- */
 .skills {
   width: 100%;
@@ -416,66 +613,6 @@ footer .social_media_icons a:hover i {
   color: rgba(54, 54, 54, 0.966);
 }
 
-/* --------- toggle ---------- */
-.toggle {
-  width: 200px;
-  height: 200px;
-  backdrop-filter: blur(20px);
-  border-radius: 15px;
-  background: rgba(20, 20, 20, 0.178);
-  position: fixed;
-  top: 250px;
-  right: 10px;
-  z-index: 100;
-  flex-direction: column;
-  justify-content: space-evenly;
-  transition: all .4s;
-}
-
-.toggle .box a {
-  flex-direction: column;
-  text-decoration: none;
-}
-
-.toggle .box a i {
-  font-size: 18px;
-}
-
-.toggle .box a p {
-  font-size: 12px;
-  margin-top: 8px;
-}
-
-.toggle .box:nth-child(2) {
-  width: 100%;
-  justify-content: space-evenly;
-}
-
-.toggle .box input {
-  width: 40px;
-  height: 40px;
-  -webkit-appearance: none;
-  cursor: pointer;
-  border-radius: 10px;
-  background: rgb(31, 31, 31);
-  border: 6px solid rgba(255, 255, 255, 0.459);
-}
-
-.toggle.active .box input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 15px;
-}
-
-.toggle.active {
-  width: 50px;
-  height: 50px;
-  overflow: hidden;
-}
-
 /* ---------- Media Query ---------- */
 @media (max-width: 1120px) {
   #main .user_img img {
@@ -547,7 +684,6 @@ footer .social_media_icons a:hover i {
     padding: 2em 0.2em;
   }
 }
-
 @media (max-width: 350px) {
   body {
     font-size: 8px;
@@ -561,4 +697,4 @@ footer .social_media_icons a:hover i {
   .projects .project_heading {
     font-size: 4em; /* Adjust font size for smaller screens */
   }
-} ⬤
+} 

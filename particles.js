@@ -1,175 +1,180 @@
-particlesJS('particles-js', {
-	particles: {
-		number: {
-			value: 150,
-			density: {
-				enable: true,
-				value_area: 800
-			}
-		},
-		color: {
-			value: '#fff'
-		},
-		shape: {
-			type: 'circle',
-			stroke: {
-				width: 0,
-				color: '#fff'
-			},
-			polygon: {
-				nb_sides: 5
-			},
-			image: {
-				src: 'https://cdn.freebiesupply.com/logos/large/2x/slack-logo-icon.png',
-				width: 100,
-				height: 100
-			}
-		},
-		
-		opacity: {
-			value: 0.2,
-			random: false,
-			anim: {
-				enable: false,
-				speed: 1,
-				opacity_min: 0.1,
-				sync: false
-			}
-		},
-		size: {
-			value: 4,
-			random: true,
-			anim: {
-				enable: false,
-				speed: 10,
-				size_min: 10,
-				sync: false
-			}
-		},
-		line_linked: {
-			enable: false,
-			distance: 150,
-			color: '#808080',
-			opacity: 0.4,
-			width: 1
-		},
-		move: {
-			enable: true,
-			speed: 5,
-			direction: 'none',
-			random: false,
-			straight: false,
-			out_mode: 'out',
-			bounce: false,
-			attract: {
-				enable: false,
-				rotateX: 600,
-				rotateY: 1200
-			}
-		}
-	},
-	interactivity: {
-		detect_on: 'window',
-		events: {
-			onhover: {
-				enable: false,
-				mode: 'repulse'
-			},
-			onclick: {
-				enable: false,
-				mode: 'push'
-			}
-		},
-		modes: {
-			'repulse' : {
-				distance: 70,
-				duration: 0.4
-			},
-			'push' : {
-				particles_nb: 4
-			}
-		}
-	},
-	retina_detect: true
-});
-const allElements = document.querySelectorAll('.animated-text');
+{/* <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> */}
 
-// It checks if there is at least one element
-if (allElements.length > 0) {
-	//It runs the script for each found element
-	allElements.forEach((element) => {
-		const txtElement = element,
-			wordsList = txtElement.getAttribute('data-words'),
-			words = wordsList.split(', '); // It makes an array of words from data attribute
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#4cc9f0'
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    },
+                    polygon: {
+                        nb_sides: 5
+                    }
+                },
+                opacity: {
+                    value: 0.3,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 10,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#4cc9f0',
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'window',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'repulse'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    }
+                },
+                modes: {
+                    repulse: {
+                        distance: 100,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
 
-		let wordsCount = 0;
+        // Text animation
+        const allElements = document.querySelectorAll('.animated-text');
 
-		entry();
+        if (allElements.length > 0) {
+            allElements.forEach((element) => {
+                const txtElement = element,
+                    wordsList = txtElement.getAttribute('data-words'),
+                    words = wordsList.split(', ');
 
-		// Initial function
-		function entry() {
-			if (wordsCount < words.length) {
-				// It runs the code for each word
-				let word = words[wordsCount],
-					txtArr = word.split(''), // It makes an array of letters in the word
-					count = 0;
+                let wordsCount = 0;
 
-				txtElement.textContent = ''; // It removes the previous text from the element
+                entry();
 
-				// For each letter in the array
-				txtArr.forEach((letter) => {
-					// It replaces the empty space for the "non-break-space" HTML...
-					// ... This is needed to separate the words properly
-					let _letter = letter === ' ' ? '&nbsp;' : letter;
+                function entry() {
+                    if (wordsCount < words.length) {
+                        let word = words[wordsCount],
+                            txtArr = word.split(''),
+                            count = 0;
 
-					// It wraps every letter with a "span" and puts all they back to the element
-					txtElement.innerHTML += `<span>${_letter}</span>`;
-				});
+                        txtElement.textContent = '';
 
-				let spans = txtElement.childNodes;
+                        txtArr.forEach((letter) => {
+                            let _letter = letter === ' ' ? '&nbsp;' : letter;
+                            txtElement.innerHTML += `<span>${_letter}</span>`;
+                        });
 
-				// It sets the interval between each letter showing
-				const letterInterval = setInterval(activeLetter, 70);
+                        let spans = txtElement.childNodes;
 
-				function activeLetter() {
-					spans[count].classList.add('active');
-					count++;
+                        const letterInterval = setInterval(activeLetter, 70);
 
-					if (count === spans.length) {
-						clearInterval(letterInterval);
+                        function activeLetter() {
+                            spans[count].classList.add('active');
+                            count++;
 
-						// It waits 4 seconds to start erasing the word
-						setTimeout(() => {
-							eraseText();
-						}, 600);
-					}
-				}
+                            if (count === spans.length) {
+                                clearInterval(letterInterval);
+                                setTimeout(() => {
+                                    eraseText();
+                                }, 2000);
+                            }
+                        }
 
-				function eraseText() {
-					// It sets the interval between each letter hiding
-					let removeInterval = setInterval(removeLetter, 40);
-					count--;
+                        function eraseText() {
+                            let removeInterval = setInterval(removeLetter, 40);
+                            count--;
 
-					function removeLetter() {
-						spans[count].classList.remove('active');
-						count--;
+                            function removeLetter() {
+                                spans[count].classList.remove('active');
+                                count--;
 
-						if (count === -1) {
-							clearInterval(removeInterval);
-							wordsCount++;
+                                if (count === -1) {
+                                    clearInterval(removeInterval);
+                                    wordsCount++;
+                                    entry();
+                                }
+                            }
+                        }
+                    } else {
+                        wordsCount = 0;
+                        entry();
+                    }
+                }
+            });
+        }
 
-							// After removing the last letter, call the initial function again
-							entry();
-						}
-					}
-				}
-			} else {
-				// If the code reaches the last word
-				// It resets the words counter...
-				wordsCount = 0;
-				// ...and calls the initial function again.
-				entry();
-			}
-		}
-	});
-}
+        // Education details toggle
+        function toggleDetails(id) {
+            const details = document.getElementById(id);
+            const btn = details.previousElementSibling;
+            
+            if (details.style.display === "block") {
+                details.style.display = "none";
+                btn.innerHTML = btn.innerHTML.replace('▲', '▼');
+            } else {
+                // Close any open details first
+                document.querySelectorAll('.education-details').forEach(detail => {
+                    if (detail.id !== id && detail.style.display === "block") {
+                        detail.style.display = "none";
+                        const otherBtn = detail.previousElementSibling;
+                        otherBtn.innerHTML = otherBtn.innerHTML.replace('▲', '▼');
+                    }
+                });
+                
+                details.style.display = "block";
+                btn.innerHTML = btn.innerHTML.replace('▼', '▲');
+            }
+        }
+    
