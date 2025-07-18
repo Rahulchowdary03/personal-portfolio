@@ -155,33 +155,53 @@ if (allElements.length > 0) {
 
 function toggleDetails(id) {
   const details = document.getElementById(id);
+  if (!details) {
+    console.error(`Details element with id "${id}" not found.`);
+    return;
+  }
   const btn = details.previousElementSibling;
+  if (!btn || !btn.classList.contains('degree-btn')) {
+    console.error(`Button for details id "${id}" not found or invalid.`);
+    return;
+  }
   const isOpen = details.style.display === 'block';
 
+  // Close all other open details
   document.querySelectorAll('.education-details').forEach((detail) => {
-    if (detail.id !== id && detail.style.display === 'block') {
-      detail.style.display = 'none';
-      const otherBtn = detail.previousElementSibling;
+    detail.style.display = 'none';
+    const otherBtn = detail.previousElementSibling;
+    if (otherBtn && otherBtn.classList.contains('degree-btn')) {
       otherBtn.querySelector('span').textContent = '▼';
       otherBtn.setAttribute('aria-expanded', 'false');
     }
   });
 
+  // Toggle the clicked details
   details.style.display = isOpen ? 'none' : 'block';
   btn.querySelector('span').textContent = isOpen ? '▼' : '▲';
   btn.setAttribute('aria-expanded', !isOpen);
 }
 
-document.querySelector('.education-list').addEventListener('click', (event) => {
-  const btn = event.target.closest('.degree-btn');
-  if (btn) {
-    const id = btn.getAttribute('aria-controls');
-    toggleDetails(id);
+// Simplified event delegation for education buttons
+document.addEventListener('DOMContentLoaded', () => {
+  const educationList = document.querySelector('.education-list');
+  if (!educationList) {
+    console.error('Education list not found in the DOM.');
+    return;
   }
+
+  educationList.addEventListener('click', (event) => {
+    const btn = event.target.closest('.degree-btn');
+    if (btn) {
+      const id = btn.getAttribute('aria-controls');
+      toggleDetails(id);
+    }
+  });
 });
 
 window.addEventListener('load', function() {
   const form = document.getElementById('contact-form');
+  const successMessage = document.getElementById('form-success');
   if (!form) {
     console.error('Contact form not found.');
     document.querySelector('.fallback-contact').style.display = 'block';
@@ -221,10 +241,15 @@ window.addEventListener('load', function() {
       })
     }).then(response => {
       if (response.ok) {
-        alert('Message sent successfully!');
+        form.style.display = 'none';
+        successMessage.style.display = 'block';
         document.getElementById('contact-form').reset();
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Send Message';
+        submitBtn.textContent = 'Get Started Now';
+        setTimeout(() => {
+          successMessage.style.display = 'none';
+          form.style.display = 'flex';
+        }, 5000);
       } else {
         return response.json().then(error => { throw new Error(JSON.stringify(error, null, 2)) });
       }
@@ -232,7 +257,7 @@ window.addEventListener('load', function() {
       alert('Failed to send message: ' + error.message);
       console.error('Formspree error:', error);
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Send Message';
+      submitBtn.textContent = 'Get Started Now';
       document.querySelector('.fallback-contact').style.display = 'block';
     });
   });
