@@ -105,7 +105,7 @@ body {
 }
 
 #main .user_info .animated-text span.active {
-  opacity: 11;
+  opacity: 1;
 }
 
 #main .user_img img {
@@ -113,7 +113,7 @@ body {
   height: auto;
   max-width: 400px;
   border-radius: 50%;
-  margin: 0 mov;
+  margin: 0 20px;
   box-shadow: 0 0 20px #4ecdc4, 0 0 40px #349090;
   animation: glow-border 1.5s infinite alternate;
 }
@@ -336,12 +336,12 @@ body {
 }
 
 .skills::before {
-  left: -10em;
+  left: 0;
   bottom: 0;
 }
 
 .skills::after {
-  right: -10em;
+  right: 0;
   top: 8em;
   background: #f953c6;
 }
@@ -424,12 +424,12 @@ body {
 }
 
 .projects::before {
-  left: -10em;
+  left: 0;
   bottom: 0;
 }
 
 .projects::after {
-  right: -10em;
+  right: 0;
   top: 8em;
   background: #8e2de2;
 }
@@ -704,18 +704,20 @@ footer h1 {
 }
 
 .contact-buttons {
-  display: flex;
-  gap: 0.8em;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
 }
 
 .contact-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block;
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  padding: 10px;
   text-decoration: none;
+  margin-bottom: px;
   transition: all 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -743,6 +745,10 @@ footer h1 {
 .contact-btn i {
   font-size: 1.5em;
   color: var(--color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 @media (max-width: 1200px) {
@@ -755,6 +761,26 @@ footer h1 {
   }
   .container {
     max-width: 1000px;
+  }
+  .skills::before,
+  .skills::after,
+  .projects::before,
+  .projects::after {
+    width: 18em;
+    height: 18em;
+  }
+  .skills::before {
+    left: 0;
+  }
+  .skills::after {
+    right: 0;
+  }
+  .projects::before {
+    left: 0;
+  }
+  .projects::after {
+    right: 0;
+    z-index: -1;
   }
 }
 
@@ -800,15 +826,33 @@ footer h1 {
   .main_box .icon {
     font-size: 2.5em;
   }
-  .contact-buttons {
-    gap: 0.7em;
-  }
   .contact-btn {
     width: 38px;
     height: 38px;
+    margin-bottom: 15px;
   }
   .contact-btn i {
     font-size: 1.4em;
+  }
+  .skills::before,
+  .skills::after,
+  .projects::before,
+  .projects::after {
+    width: 15em;
+    height: 15em;
+  }
+  .skills::before {
+    left: 0;
+  }
+  .skills::after {
+    right: 0;
+  }
+  .projects::before {
+    left: 0;
+  }
+  .projects::after {
+    right: 0;
+    z-index: -1;
   }
 }
 
@@ -921,15 +965,33 @@ footer h1 {
   .social_media_icons a i {
     font-size: 1.5em;
   }
-  .contact-buttons {
-    gap: 0.6em;
-  }
   .contact-btn {
     width: 36px;
     height: 36px;
+    margin-bottom: 12px;
   }
   .contact-btn i {
     font-size: 1.3em;
+  }
+  .skills::before,
+  .skills::after,
+  .projects::before,
+  .projects::after {
+    width: 12em;
+    height: 12em;
+  }
+  .skills::before {
+    left: 0;
+  }
+  .skills::after {
+    right: 0;
+  }
+  .projects::before {
+    left: 0;
+  }
+  .projects::after {
+    right: 0;
+    z-index: -1;
   }
 }
 
@@ -997,15 +1059,33 @@ footer h1 {
   footer h1 {
     font-size: 2em;
   }
-  .contact-buttons {
-    gap: 0.5em;
-  }
   .contact-btn {
     width: 34px;
     height: 34px;
+    margin-bottom: 10px;
   }
   .contact-btn i {
     font-size: 1.2em;
+  }
+  .skills::before,
+  .skills::after,
+  .projects::before,
+  .projects::after {
+    width: 10em;
+    height: 10em;
+  }
+  .skills::before {
+    left: 0;
+  }
+  .skills::after {
+    right: 0;
+  }
+  .projects::before {
+    left: 0;
+  }
+  .projects::after {
+    right: 0;
+    z-index: -1;
   }
 }
 
@@ -1036,14 +1116,32 @@ footer h1 {
   .skill_box .box p {
     font-size: 0.9em;
   }
-  .contact-buttons {
-    gap: 0.4em;
-  }
   .contact-btn {
     width: 32px;
     height: 32px;
+    margin-bottom: 8px;
   }
   .contact-btn i {
     font-size: 1.1em;
+  }
+  .skills::before,
+  .skills::after,
+  .projects::before,
+  .projects::after {
+    width: 8em;
+    height: 8em;
+  }
+  .skills::before {
+    left: 0;
+  }
+  .skills::after {
+    right: 0;
+  }
+  .projects::before {
+    left: 0;
+  }
+  .projects::after {
+    right: 0;
+    z-index: -1;
   }
 }
