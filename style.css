@@ -429,9 +429,10 @@ body {
 }
 
 .projects::after {
-  right: 0;
-  top: 8em;
+  right: 10px;
+  top: 4em;
   background: #8e2de2;
+  z-index: -1;
 }
 
 .project_heading {
@@ -501,9 +502,13 @@ body {
 
 .contact {
   width: 100%;
-  padding: 5em 0;
+  min-height: 100vh;
+  padding: 0.5em 0;
   background: linear-gradient(135deg, var(--bg-dark), #2c3e50);
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
   overflow: hidden;
 }
@@ -533,7 +538,7 @@ body {
 .contact_heading {
   font-size: 4.5em;
   font-family: var(--font);
-  margin-bottom: 0.5em;
+  margin-bottom: 0.3em;
   color: var(--primary-color);
   text-align: center;
   text-transform: uppercase;
@@ -546,8 +551,9 @@ body {
   font-size: 1.2em;
   color: var(--light-color);
   text-align: center;
+  width: 90%;
   max-width: 700px;
-  margin-bottom: 2em;
+  margin: 0 auto 2em;
   line-height: 1.6;
   position: relative;
   z-index: 1;
@@ -566,6 +572,7 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 1;
+  margin: 0 auto;
 }
 
 .form-group {
@@ -633,6 +640,9 @@ body {
 }
 
 .form-success {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
   text-align: center;
   font-size: 1.1em;
   color: var(--primary-color);
@@ -651,6 +661,9 @@ body {
 }
 
 .fallback-contact {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
   margin-top: 1em;
   font-size: 1em;
   color: var(--light-color);
@@ -716,7 +729,7 @@ footer h1 {
   height: 40px;
   border-radius: 50%;
   text-decoration: none;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   transition: all 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -778,8 +791,9 @@ footer h1 {
     left: 0;
   }
   .projects::after {
-    right: 0;
-    /* z-index: -1; */
+    right: 10px;
+    top: 3em;
+    z-index: -1;
   }
 }
 
@@ -816,7 +830,7 @@ footer h1 {
     padding: 4em 0;
   }
   .contact {
-    padding: 4em 0;
+    padding: 0.3em 0;
   }
   .main_box {
     width: 100%;
@@ -828,6 +842,7 @@ footer h1 {
   .contact-btn {
     width: 38px;
     height: 38px;
+    margin-bottom: 15px;
   }
   .contact-btn i {
     font-size: 1.4em;
@@ -849,8 +864,9 @@ footer h1 {
     left: 0;
   }
   .projects::after {
-    right: 0;
-    /* z-index: -1; */
+    right: 8px;
+    top: 2em;
+    z-index: -1;
   }
 }
 
@@ -927,13 +943,15 @@ footer h1 {
     font-size: 3.5em;
   }
   .contact {
-    padding: 3em 0;
+    padding: 0.2em 0;
   }
   .contact_heading {
     font-size: 3em;
+    margin-bottom: 0.2em;
   }
   .contact_promo {
     font-size: 1em;
+    margin-bottom: 1.5em;
   }
   .contact-form {
     width: 95%;
@@ -966,6 +984,7 @@ footer h1 {
   .contact-btn {
     width: 36px;
     height: 36px;
+    margin-bottom: 12px;
   }
   .contact-btn i {
     font-size: 1.3em;
@@ -987,8 +1006,9 @@ footer h1 {
     left: 0;
   }
   .projects::after {
-    right: 0;
-    /* z-index: -1; */
+    right: 6px;
+    top: 1.5em;
+    z-index: -1;
   }
 }
 
@@ -1039,7 +1059,15 @@ footer h1 {
     padding: 2.5em 0;
   }
   .contact {
-    padding: 2.5em 0;
+    padding: 0.1em 0;
+  }
+  .contact_heading {
+    font-size: 2.5em;
+    margin-bottom: 0.2em;
+  }
+  .contact_promo {
+    font-size: 0.9em;
+    margin-bottom: 1em;
   }
   .main_box {
     flex-direction: column;
@@ -1059,6 +1087,7 @@ footer h1 {
   .contact-btn {
     width: 34px;
     height: 34px;
+    margin-bottom: 10px;
   }
   .contact-btn i {
     font-size: 1.2em;
@@ -1080,8 +1109,9 @@ footer h1 {
     left: 0;
   }
   .projects::after {
-    right: 0;
-    /* z-index: -1; */
+    right: 4px;
+    top: 1em;
+    z-index: -1;
   }
 }
 
@@ -1115,6 +1145,7 @@ footer h1 {
   .contact-btn {
     width: 32px;
     height: 32px;
+    margin-bottom: 8px;
   }
   .contact-btn i {
     font-size: 1.1em;
@@ -1136,7 +1167,8 @@ footer h1 {
     left: 0;
   }
   .projects::after {
-    right: 0;
-    /* z-index: -1; */
+    right: 2px;
+    top: 0.5em;
+    z-index: -1;
   }
 }

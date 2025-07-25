@@ -1,3 +1,4 @@
+// Particles.js initialization
 particlesJS('particles-js', {
   particles: {
     number: {
@@ -87,6 +88,23 @@ particlesJS('particles-js', {
   retina_detect: true
 });
 
+// Diagnostic: Prevent unintended redirects in .contact section
+document.querySelector('.contact').addEventListener('click', (event) => {
+  const target = event.target;
+  const githubUrl = 'https://github.com/Rahulchowdary03/real-time-chat-server';
+  
+  // Allow clicks only on form inputs, submit button, or fallback email link
+  if (!target.closest('.contact-form') && !target.closest('.fallback-contact a')) {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log('Blocked unintended click in .contact section. Target:', target);
+    if (target.href === githubUrl || target.closest(`a[href="${githubUrl}"]`)) {
+      console.warn('Attempted redirect to GitHub repository blocked:', githubUrl);
+    }
+  }
+});
+
+// Animated text for .animated-text
 const allElements = document.querySelectorAll('.animated-text');
 if (allElements.length > 0) {
   allElements.forEach((element) => {
@@ -153,6 +171,7 @@ if (allElements.length > 0) {
   });
 }
 
+// Education section toggle
 function toggleDetails(id) {
   const details = document.getElementById(id);
   if (!details) {
@@ -182,7 +201,7 @@ function toggleDetails(id) {
   btn.setAttribute('aria-expanded', !isOpen);
 }
 
-// Simplified event delegation for education buttons
+// Event delegation for education buttons
 document.addEventListener('DOMContentLoaded', () => {
   const educationList = document.querySelector('.education-list');
   if (!educationList) {
@@ -199,21 +218,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Form submission handler
 window.addEventListener('load', function() {
   const form = document.getElementById('contact-form');
   const successMessage = document.getElementById('form-success');
+  const fallbackContact = document.querySelector('.fallback-contact');
   if (!form) {
     console.error('Contact form not found.');
-    document.querySelector('.fallback-contact').style.display = 'block';
+    fallbackContact.style.display = 'block';
     return;
   }
 
-  form.addEventListener('submit', function(event) {
+  form.addEventListener('submit', async function(event) {
     event.preventDefault();
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const message = document.getElementById('message').value.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const githubUrl = 'https://github.com/Rahulchowdary03/real-time-chat-server';
 
     if (!name || !email || !message) {
       alert('Please fill out all fields.');
@@ -228,22 +250,24 @@ window.addEventListener('load', function() {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending...';
 
-    fetch('https://formspree.io/f/mldlroqg', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        message: message
-      })
-    }).then(response => {
+    try {
+      const response = await fetch('https://formspree.io/f/mldlroqg', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          message: message
+        })
+      });
+
       if (response.ok) {
         form.style.display = 'none';
         successMessage.style.display = 'block';
-        document.getElementById('contact-form').reset();
+        form.reset();
         submitBtn.disabled = false;
         submitBtn.textContent = 'Get Started Now';
         setTimeout(() => {
@@ -251,14 +275,35 @@ window.addEventListener('load', function() {
           form.style.display = 'flex';
         }, 5000);
       } else {
-        return response.json().then(error => { throw new Error(JSON.stringify(error, null, 2)) });
+        throw new Error('Form submission failed');
       }
-    }).catch(error => {
-      alert('Failed to send message: ' + error.message);
+    } catch (error) {
       console.error('Formspree error:', error);
+      alert('Failed to send message. Please try again or use the email link below.');
+      fallbackContact.style.display = 'block';
       submitBtn.disabled = false;
       submitBtn.textContent = 'Get Started Now';
-      document.querySelector('.fallback-contact').style.display = 'block';
-    });
+    }
+
+    // Prevent any redirect to GitHub
+    if (window.location.href.includes(githubUrl)) {
+      console.warn('Blocked attempt to redirect to GitHub:', githubUrl);
+      window.location.href = window.location.pathname; // Stay on current page
+    }
   });
 });
+
+// Override window.location to catch GitHub redirects
+(function() {
+  const originalSet = Object.getOwnPropertyDescriptor(window.location, 'href').set;
+  const githubUrl = 'https://github.com/Rahulchowdary03/real-time-chat-server';
+  Object.defineProperty(window.location, 'href', {
+    set: function(value) {
+      if (value === githubUrl) {
+        console.warn('Blocked window.location.href redirect to:', githubUrl);
+        return;
+      }
+      originalSet.call(window.location, value);
+    }
+  });
+})();
